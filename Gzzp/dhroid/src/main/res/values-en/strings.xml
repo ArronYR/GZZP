@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="listview_to_xiala">Pull down to refresh</string>
+    <string name="listview_to_loadmore">Click to load more</string>
+    <string name="listview_loading">Loading....</string>
+    <string name="listview_nomore_data">No more</string>
+    <string name="listview_pulldown_toload">Pull down to refresh</string>
+    <string name="listview_pulldown_frist_loading">Pull down to first refresh</string>
+    <string name="listview_last_loading_time">Last refresh: %1$s</string>
+    <string name="listview_release_to_loading">Refresh</string>
+    <string name="listview_time_formart">yyyy-MM-dd HH:mm:ss</string>
+    <string name="loading">loading...</string>
+    <string name="nonet">Not available network</string>
+    <string name="net_bad">Current network signal is poor</string>
+    <string name="net_error">net error</string>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="zp_type">
+        <item>@string/recruit_gzzp</item>
+        <item>@string/recruit_gyzp</item>
+        <item>@string/recruit_bjzp</item>
+        <item>@string/recruit_zyzp</item>
+        <item>@string/recruit_trzp</item>
+        <item>@string/recruit_qdnzp</item>
+        <item>@string/recruit_qxnzp</item>
+        <item>@string/recruit_qnzp</item>
+        <item>@string/recruit_aszp</item>
+        <item>@string/recruit_lpszp</item>
+    </string-array>
+</resources>
