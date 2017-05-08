@@ -17,7 +17,9 @@
 4. 更新UI样式等。
 
 截图：
+
 ![截图1](http://7xrgqs.com1.z0.glb.clouddn.com/20170507_195452.png?imageView2/5/w/200/h/200/q/75|imageslim)
+
 ![截图2](http://7xrgqs.com1.z0.glb.clouddn.com/20170507_195455.png?imageView2/5/w/200/h/200/q/75|imageslim)
 
 ## 接口
