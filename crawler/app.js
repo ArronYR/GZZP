@@ -10,7 +10,7 @@ const url = require('url');
 const mysql = require('mysql');
 const config = require('./config');
 const JPush = require("./node_modules/jpush-sdk/lib/JPush/JPush.js");
-const client = JPush.buildClient('6fcda52aa00e363bd10e1037', '1d72fe2795f8bde4c3ec216f');
+const client = JPush.buildClient(config.jpush_appkey, config.jpush_secret);
 
 require("date-utils");
 

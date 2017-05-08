@@ -1,8 +1,9 @@
-var async = require('async');
-require("date-utils");
+const async = require('async');
+const config = require('./config');
+const JPush = require("./node_modules/jpush-sdk/lib/JPush/JPush.js");
+const client = JPush.buildClient(config.jpush_appkey, config.jpush_secret);
 
-var JPush = require("./node_modules/jpush-sdk/lib/JPush/JPush.js");
-var client = JPush.buildClient('6fcda52aa00e363bd10e1037', '1d72fe2795f8bde4c3ec216f');
+require("date-utils");
 
 function seriesFunc() {
     async.series([
@@ -33,7 +34,7 @@ function seriesFunc() {
 function date() {
     console.log(Date.today().toFormat('HH'));
 }
-date();
+// date();
 
 function push() {
     client.push().setPlatform(JPush.ALL)
@@ -49,4 +50,4 @@ function push() {
         });
 }
 
-// push();
+push();
