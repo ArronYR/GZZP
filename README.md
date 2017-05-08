@@ -16,6 +16,10 @@
 3. 更换图标等资源；
 4. 更新UI样式等。
 
+截图：
+![截图1](http://7xrgqs.com1.z0.glb.clouddn.com/20170507_195452.png)
+![截图2](http://7xrgqs.com1.z0.glb.clouddn.com/20170507_195455.png)
+
 ## 接口
 
 采用`Laravel 5.4`，代码见`api`目录。
