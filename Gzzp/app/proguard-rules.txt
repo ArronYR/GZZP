@@ -109,6 +109,10 @@
 -dontwarn cn.jiguang.**
 -keep class cn.jiguang.** { *; }
 
+-keep class com.tencent.mm.opensdk.** { *; }
+-keep class com.tencent.wxop.** { *; }
+-keep class com.tencent.mm.sdk.** { *; }
+
 # bean包，自定义的bean如果倍混淆了，可能对逻辑造成混乱==。
 -keep class com.helloarron.gzzp.bean.** { *; }
 

@@ -106,8 +106,8 @@ public class MessageActivity extends GzzpBaseActivity {
 
         bmb = (BoomMenuButton) findViewById(R.id.bmb);
         bmb.setButtonEnum(ButtonEnum.TextOutsideCircle);
-        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_4_1);
-        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_4_1);
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_2_1);
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_2_1);
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .normalImageRes(BuilderManager.getImageResource())

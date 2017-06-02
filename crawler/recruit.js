@@ -127,7 +127,7 @@ var getNeedContentMessages = function () {
             connection.end();
             // 执行推送
             if (new_messages) {
-                push("哇，有新的岗位招聘来啦~~，共有" + new_messages + "条哦");
+                push("哇，有新的职位招聘来啦~~，共有" + new_messages + "条哦");
             }
         });
         fetchContents(no_content_messages);
