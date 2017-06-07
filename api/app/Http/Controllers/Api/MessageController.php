@@ -52,7 +52,7 @@ class MessageController extends Controller
         $keyword = $request->input('keyword');
         $type = null !== $request->input('type') ? $request->input('type') : 1 ;
 
-        $messages = Message::orderBy('published_at', 'desc')
+        $messages = Message::orderBy('created_at', 'desc')
             ->where('type', $type)
             ->where('title', 'like', "%$keyword%")
             ->paginate(20);
