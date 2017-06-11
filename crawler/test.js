@@ -32,9 +32,9 @@ function seriesFunc() {
 // seriesFunc();
 
 function date() {
-    console.log(Date.today().toFormat('HH'));
+    console.log(Date.today().toFormat('YYYY'));
 }
-// date();
+date();
 
 function push() {
     client.push().setPlatform(JPush.ALL)
@@ -50,4 +50,4 @@ function push() {
         });
 }
 
-push();
+// push();
