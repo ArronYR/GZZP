@@ -33,6 +33,12 @@ class MessageController extends Controller
             $data->type = $message->type;
             $data->type_text = $message->getTypeText($message->type);
             $data->created_at = $message->created_at;
+            
+            if ($message->content == null) {
+                $content = "<div style='margin-top:200px;text-align:center'>请点击右上角图标打开原链接查看</div>";
+                $data->content = $content;
+            }
+            
             $result['result'] = $data;
         }else{
             $result['error'] = 1;
@@ -59,10 +65,6 @@ class MessageController extends Controller
        
         foreach ($messages as $m => $message) {
             $message->type_text = $message->getTypeText($message->type);
-            if ($message->content == null) {
-                $content = "<div style='margin-top:20px;text-align:center'>请点击右上角图标打开原链接查看</div>";
-                $message->content = $content;
-            }
         }
         
         $result['error'] = 0;
