@@ -92,13 +92,17 @@ var update = function (message) {
     // 使用async控制函数同步执行
     async.series([
         function (callback) {
-            var query = connection.query('UPDATE messages SET ? WHERE id = ' + mysql.escape(message.id), {
-                content: message.content
-            }, function (err, result) {
-                if (err) throw err;
-                console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [update_query] ');
+            if (message) {
+                var query = connection.query('UPDATE messages SET ? WHERE id = ' + mysql.escape(message.id), {
+                    content: message.content
+                }, function (err, result) {
+                    if (err) throw err;
+                    console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [update_query] ');
+                    callback(null);
+                });
+            } else {
                 callback(null);
-            });
+            }
         },
         function (callback) {
             ep.emit('update_data', message);
@@ -143,7 +147,7 @@ var fetchContent = function (message, callback) {
     superagent.get(message.url)
         .charset()
         .end(function (err, res) {
-            if (err) {
+            if (err || typeof res.text == 'undefined') {
                 return callback(err, null);
             }
             let $ = cheerio.load(res.text, {
@@ -181,7 +185,7 @@ var fetchUrl = function (obj, callback) {
     superagent.get(obj.url)
         .charset() // 设置编码，默认utf-8
         .end(function (err, res) {
-            if (err) {
+            if (err || typeof res.text == 'undefined') {
                 return console.log(err);
             }
             let $ = cheerio.load(res.text, {

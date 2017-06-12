@@ -59,6 +59,10 @@ class MessageController extends Controller
        
         foreach ($messages as $m => $message) {
             $message->type_text = $message->getTypeText($message->type);
+            if ($message->content == null) {
+                $content = "<div style='margin-top:20px;text-align:center'>请点击右上角图标打开原链接查看</div>";
+                $message->content = $content;
+            }
         }
         
         $result['error'] = 0;
