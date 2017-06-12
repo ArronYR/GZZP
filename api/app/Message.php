@@ -27,7 +27,7 @@ class Message extends Model
     /**
      * 获取类型文字
      *
-     * @param [type] $value
+     * @param Object $value
      * @return void
      */
     public function getTypeText($value)
