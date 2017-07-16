@@ -16,7 +16,7 @@ require("date-utils");
 
 const gzzpHost = 'www.163gz.com';
 const gzzpUrl = 'http://www.163gz.com/gzzp8/zkxx/';
-const maxConcurrency = 5;
+const maxConcurrency = 2;
 // 得到一个 eventproxy 的实例
 const ep = new eventproxy();
 const connection = mysql.createConnection(config);
@@ -84,7 +84,7 @@ var update = function (message) {
  * 获取需要更新消息内容content的消息集合
  */
 var getNeedContentMessages = function () {
-    connection.query("SELECT * FROM messages WHERE content is null OR content = ''", function (err, rows) {
+    connection.query("SELECT * FROM messages WHERE (content is null OR content = '') AND type = 1 ORDER BY id DESC LIMIT 15", function (err, rows) {
         if (err) throw err;
         rows.forEach(function (row, index, rows) {
             let msgInfo = {
@@ -115,6 +115,9 @@ var getNeedContentMessages = function () {
 var fetchContent = function (message, callback) {
     superagent.get(message.url)
         .charset()
+        .on('error', function (error) {
+            callback(null, message);
+        })
         .end(function (err, res) {
             if (err || typeof res.text == 'undefined') {
                 return callback(err, null);
