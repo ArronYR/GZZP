@@ -24,11 +24,28 @@
             .full-height {
                 height: 100vh;
             }
+            
+            .flex-center::before{
+                content: "";
+            }
 
             .flex-center {
                 align-items: center;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
+                flex-direction: column;
+            }
+
+            .footer{
+                color: #636b6f;
+                padding: 1rem;
+            }
+
+            .footer a{
+                color: #636b6f;
+                font-weight: 100;
+                letter-spacing: .1rem;
+                text-decoration: none;
             }
 
             .position-ref {
@@ -50,10 +67,11 @@
             }
 
             .links > a {
+                display: inline-block;
                 color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
+                padding: 10px 25px;
+                font-size: 16px;
+                font-weight: 300;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -87,6 +105,11 @@
                     <a href="{{ url('/docs') }}">Documentation</a>
                     <a href="https://github.com/ArronYR">GitHub</a>
                 </div>
+            </div>
+
+            <div class="footer">
+                &copy;{{ date('Y') }} - 
+                <a href="http:://helloarron.com" target="_blank">Arron</a>
             </div>
         </div>
     </body>

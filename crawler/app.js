@@ -5,6 +5,7 @@ const install = require('superagent-charset');
 const superagent = install(require('superagent'));
 const cheerio = require('cheerio');
 const escaper = require("true-html-escape");
+const __ = require('underscore');
 const async = require('async');
 const url = require('url');
 const mysql = require('mysql');
@@ -16,7 +17,7 @@ require("date-utils");
 
 const gzzpHost = 'www.163gz.com';
 const gzzpUrl = 'http://www.163gz.com/gzzp8/zkxx/';
-const maxConcurrency = 2;
+const maxConcurrency = 3;
 // 得到一个 eventproxy 的实例
 const ep = new eventproxy();
 const connection = mysql.createConnection(config);
@@ -98,6 +99,7 @@ var getNeedContentMessages = function () {
             console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [update_data_end] ');
             // 关闭数据库连接
             connection.end();
+            // connection.destroy();
             // 执行推送
             if (new_messages > 0) {
                 push("哇，有新的人事招考信息来啦~~，共有" + new_messages + "条哦");
@@ -125,8 +127,8 @@ var fetchContent = function (message, callback) {
             let $ = cheerio.load(res.text, {
                 decodeEntities: false
             });
-            let content = $('#zoom').children('table').remove();
-            message.content = escaper.unescape($('#zoom').html()).replace(/(^\s*)|(\s*$)/g, "");
+            $('#zoom').children('table').remove();
+            message.content = __.unescape($('#zoom').html().replace(/(^\s*)|(\s*$)/g, ""));
             callback(null, message);
         });
 };
