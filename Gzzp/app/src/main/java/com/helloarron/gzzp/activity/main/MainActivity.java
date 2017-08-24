@@ -2,12 +2,14 @@ package com.helloarron.gzzp.activity.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.ColorUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -29,6 +31,7 @@ import com.helloarron.gzzp.bean.BackHomeEB;
 import com.helloarron.gzzp.bean.User;
 import com.helloarron.gzzp.manage.UserInfoManage;
 import com.helloarron.gzzp.utils.GzzpPreference;
+import com.helloarron.gzzp.utils.GzzpUtils;
 import com.pgyersdk.update.PgyUpdateManager;
 
 import java.util.ArrayList;
@@ -60,6 +63,9 @@ public class MainActivity extends FragmentActivity {
 
         // 默认对话框的版本更新检查
         PgyUpdateManager.register(this, "TljCxu2AOMavxJ7");
+
+        // 设置通知栏颜色
+        GzzpUtils.setWindowStatusBarColor(this, getResources().getColor(R.color.status_bar_color));
     }
 
     private void initView() {

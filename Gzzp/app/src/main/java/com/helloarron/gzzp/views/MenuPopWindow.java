@@ -19,18 +19,18 @@ import com.helloarron.gzzp.adapter.MenuPopAdapter;
 
 public class MenuPopWindow extends PopupWindow {
 
-    private View conentView;
+    private View contentView;
     private ListView lvContent;
 
     public MenuPopWindow(Activity context, String[] list) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        conentView = inflater.inflate(R.layout.menu_pop, null);
-        lvContent = (ListView) conentView.findViewById(R.id.lv_menu);
+        contentView = inflater.inflate(R.layout.menu_pop, null);
+        lvContent = (ListView) contentView.findViewById(R.id.lv_menu);
         lvContent.setAdapter(new MenuPopAdapter(context, list));
         int h = context.getWindowManager().getDefaultDisplay().getHeight();
         int w = context.getWindowManager().getDefaultDisplay().getWidth();
         // 设置SelectPicPopupWindow的View
-        this.setContentView(conentView);
+        this.setContentView(contentView);
         // 设置SelectPicPopupWindow弹出窗体的宽
         this.setWidth(w / 2);
         // 设置SelectPicPopupWindow弹出窗体的高
@@ -62,8 +62,8 @@ public class MenuPopWindow extends PopupWindow {
         if (!this.isShowing()) {
             // 以下拉方式显示popupwindow
             int parent_width = parent.getWidth();//获取对应的控件view宽度px值
-            int width = parent_width / 2;//获取x轴偏移量px
-            this.showAsDropDown(parent, -width, 0);
+            int width = parent_width / 4;//获取x轴偏移量px
+            this.showAsDropDown(parent, width, 0);
         } else {
             this.dismiss();
         }

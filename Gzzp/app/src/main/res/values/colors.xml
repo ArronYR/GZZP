@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#26a69a</color>
+    <color name="status_bar_color">#00796B</color>
 
     <color name="teal_400">#26a69a</color>
     <color name="app_bg">#FAFAFA</color>

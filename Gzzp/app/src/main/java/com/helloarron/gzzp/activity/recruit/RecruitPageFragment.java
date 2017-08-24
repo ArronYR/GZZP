@@ -271,7 +271,7 @@ public class RecruitPageFragment extends GzzpBaseFagment implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_type:
-                pw.showPopupWindow(tvSpinner);
+                pw.showPopupWindow(mainV.findViewById(R.id.title_bar));
                 break;
             case R.id.im_search_icon:
                 etSearch.clearFocus();
