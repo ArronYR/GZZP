@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.helloarron.gzzp.R;
 import com.helloarron.gzzp.base.Const;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -111,5 +112,28 @@ public class ImageUtil {
         canvas.drawRect(rectF, paint);
 
         return roundCornerImage;
+    }
+
+    /**
+     * 得到Bitmap的byte
+     *
+     * @param bmp 图片
+     * @return 返回压缩的图片
+     */
+    public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, output);
+        if (needRecycle) {
+            bmp.recycle();
+        }
+
+        byte[] result = output.toByteArray();
+        try {
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

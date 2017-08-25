@@ -104,6 +104,8 @@
 
     <string name="qq">QQ好友</string>
     <string name="moments">微信朋友圈</string>
+    <string name="collection">微信朋友圈</string>
     <string name="wechat">微信好友</string>
     <string name="qzone">QQ空间</string>
+    <string name="sine">新浪微博</string>
 </resources>

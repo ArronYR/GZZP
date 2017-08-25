@@ -23,15 +23,13 @@ public class BuilderManager {
     private static int[] imageResources = new int[]{
             R.drawable.icon_wechat,
             R.drawable.icon_moments,
-            R.drawable.icon_qq,
-            R.drawable.icon_qzone,
+            R.drawable.icon_wx_collection
     };
 
     private static int[] textResources = new int[]{
             R.string.wechat,
             R.string.moments,
-            R.string.qq,
-            R.string.qzone,
+            R.string.collection
     };
 
     public static int getImageResource() {

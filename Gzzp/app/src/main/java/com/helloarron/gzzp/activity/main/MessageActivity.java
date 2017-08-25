@@ -1,18 +1,15 @@
 package com.helloarron.gzzp.activity.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.helloarron.dhroid.adapter.NetJSONAdapter;
 import com.helloarron.dhroid.net.DhNet;
 import com.helloarron.dhroid.net.JSONUtil;
 import com.helloarron.dhroid.net.NetTask;
@@ -22,16 +19,13 @@ import com.helloarron.gzzp.api.API;
 import com.helloarron.gzzp.base.Const;
 import com.helloarron.gzzp.base.GzzpBaseActivity;
 import com.helloarron.gzzp.manage.BuilderManager;
-import com.helloarron.gzzp.views.RefreshListViewAndMore;
-import com.nightonke.boommenu.Animation.BoomEnum;
+import com.helloarron.gzzp.manage.WxShareManager;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
-import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
-import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
+import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
-import com.nightonke.boommenu.Util;
 
 import org.json.JSONObject;
 
@@ -43,16 +37,22 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MessageActivity extends GzzpBaseActivity {
 
-    String url = Const.GZZP;
+    private Context context;
+    public String url = Const.GZZP;
+    public String title, description;
 
-    WebView wvContent;
+    public WebView wvContent;
 
-    BoomMenuButton bmb;
+    // 分享按钮
+    BoomMenuButton boomMenuButton;
+    WxShareManager shareManager;
+    WxShareManager.ShareContentWebpage shareContentWebpage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        context = this;
 
         setTitle(getString(R.string.message_title));
         setTitleVisible();
@@ -79,6 +79,8 @@ public class MessageActivity extends GzzpBaseActivity {
                 startActivity(intent);
             }
         });
+
+        shareManager = WxShareManager.getInstance(context);
     }
 
     @Override
@@ -104,25 +106,38 @@ public class MessageActivity extends GzzpBaseActivity {
 
         getData(id);
 
-        bmb = (BoomMenuButton) findViewById(R.id.bmb);
-        bmb.setButtonEnum(ButtonEnum.TextOutsideCircle);
-        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_2_1);
-        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_2_1);
-        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
-            TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
+        boomMenuButton = (BoomMenuButton) findViewById(R.id.bmb);
+        boomMenuButton.setButtonEnum(ButtonEnum.SimpleCircle);
+        boomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_3_3);
+        boomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_3_3);
+        for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
+            SimpleCircleButton.Builder builder = new SimpleCircleButton.Builder()
+                    .rippleEffect(true)
                     .normalImageRes(BuilderManager.getImageResource())
-                    .normalText(getString(BuilderManager.getTextResource()))
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
-                            // When the boom-button corresponding this builder is clicked.
-                            Toast.makeText(self, "Clicked " + index, Toast.LENGTH_SHORT).show();
+                            switch (index){
+                                case 0:
+                                    shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_WAY_WEBPAGE);
+                                    break;
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     });
-            bmb.addBuilder(builder);
+            boomMenuButton.addBuilder(builder);
         }
     }
 
+    /**
+     * 获取招聘详情
+     * @param id
+     */
     private void getData(String id) {
         DhNet gzzpNet = new DhNet(new API().message + id);
         gzzpNet.doGetInDialog(new NetTask(self) {
@@ -135,6 +150,11 @@ public class MessageActivity extends GzzpBaseActivity {
 
                     wvContent.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
                     url = JSONUtil.getString(jo, "url");
+                    title = JSONUtil.getString(jo, "type_text");
+                    description = JSONUtil.getString(jo, "title");
+
+                    shareContentWebpage = shareManager.new ShareContentWebpage(title, description, url, R.mipmap.ic_launcher);
+                    boomMenuButton.setVisibility(View.VISIBLE);
                 } else if (response.isSuccess()) {
                     showToast(response.getErrorMsg());
                 } else {

@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:name=".GzzpApplication"
@@ -48,13 +49,12 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.main.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name="com.pgyersdk.activity.FeedbackActivity" />
 
         <meta-data
             android:name="PGYER_APPID"
-            android:value="e01e0e911890fa0ca62d661a3888d87d"></meta-data>
+            android:value="e01e0e911890fa0ca62d661a3888d87d" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -65,6 +65,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="6fcda52aa00e363bd10e1037" />
+
+        <!-- 微信分享回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

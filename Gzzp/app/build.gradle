@@ -36,6 +36,7 @@ android {
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "6fcda52aa00e363bd10e1037",
                 JPUSH_CHANNEL: "ARRON_CHANNEL",
+                TENCENT_APPID: "wx53d7536afe86c1a0"
         ]
     }
     buildTypes {
@@ -67,10 +68,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.pgyersdk:sdk:2.5.6'
 
-    compile 'cn.jiguang.sdk:jpush:3.0.5'
-    compile 'cn.jiguang.sdk:jcore:1.1.2'
-
     compile 'com.nightonke:boommenu:2.0.9'
+
+    compile 'cn.jiguang.sdk:jpush:3.0.5'
+    compile 'cn.jiguang.sdk:jcore:1.1.5'
 
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }

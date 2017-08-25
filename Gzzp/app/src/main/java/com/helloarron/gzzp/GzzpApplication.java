@@ -11,6 +11,7 @@ import com.helloarron.dhroid.net.CodeHandler;
 import com.helloarron.dhroid.net.GlobalCodeHandler;
 import com.helloarron.dhroid.net.GlobalParams;
 import com.helloarron.dhroid.net.cache.DaoHelper;
+import com.helloarron.dhroid.util.UserLocation;
 import com.helloarron.gzzp.base.GzzpCodeHandler;
 import com.helloarron.gzzp.base.GzzpGlobalCodeHandler;
 import com.helloarron.gzzp.base.GzzpValueFix;
@@ -59,10 +60,10 @@ public class GzzpApplication extends Application implements Thread.UncaughtExcep
         GzzpPreference per = IocContainer.getShare().get(GzzpPreference.class);
         per.load();
 
-//        if (per.isFirst != 0) {
-//            UserLocation location = UserLocation.getInstance();
-//            location.init(this);
-//        }
+        if (per.isFirst != 0) {
+            UserLocation location = UserLocation.getInstance();
+            location.init(this);
+        }
         PgyCrashManager.register(this);
         JPushInterface.setDebugMode(false);
         JPushInterface.init(this);

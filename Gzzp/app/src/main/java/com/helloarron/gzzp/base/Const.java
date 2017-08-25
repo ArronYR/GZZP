@@ -22,4 +22,8 @@ public class Const {
     public final static String HOST = "https://gzzp.helloarron.com";
 
     public final static String GZZP = "http://www.163gz.com/gzzp8/zkxx/";
+
+    // 微信开发者平台
+    public final static String WX_APP_ID = "wx53d7536afe86c1a0";
+    public final static String WX_APP_SECRET = "e0bc770d549225f062a1cc013c3c7495";
 }
