@@ -1,10 +1,11 @@
 {
   "name": "gzzp",
   "version": "1.0.0",
-  "description": "贵州人事网招聘信息",
+  "description": "贵州招聘信息",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "app": "node app.js",
+    "rec": "node recruit.js"
   },
   "keywords": [
     "招聘",
