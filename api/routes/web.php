@@ -30,3 +30,7 @@ Route::get('password/reset', 'Auth\ResetPasswordController@resetForm')->name('pa
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/docs', function () {
+    return view('docs');
+});
