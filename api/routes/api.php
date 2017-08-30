@@ -13,12 +13,23 @@ use Illuminate\Http\Request;
 |
 */
 
+// 消息相关
 Route::middleware('api')
     ->get('/message/{id}', ['uses'=>'Api\MessageController@message'])
     ->where(['id' => '[0-9]+']);
 
 Route::middleware('api')
     ->get('/messages', ['uses'=>'Api\MessageController@messages']);
+
+Route::middleware('api')
+    ->get('/messages/count', ['uses'=>'Api\MessageController@count']);
+
+// 用户相关
+Route::middleware('api')
+    ->post('/login', ['uses'=>'Api\UserController@login']);
+
+Route::middleware('api')
+    ->post('/register', ['uses'=>'Api\UserController@register']);
 
 Route::middleware('api')
     ->post('/collection', ['uses'=>'Api\UserController@collection']);
@@ -29,9 +40,3 @@ Route::middleware('api')
 Route::middleware('api')
     ->get('/collections/{id}', ['uses'=>'Api\UserController@collections'])
     ->where(['id' => '[0-9]+']);
-
-Route::middleware('api')
-    ->post('/login', ['uses'=>'Api\UserController@login']);
-
-Route::middleware('api')
-    ->post('/register', ['uses'=>'Api\UserController@register']);

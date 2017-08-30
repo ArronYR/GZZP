@@ -44,6 +44,12 @@ class UserController extends Controller
         return response()->json(['error' => 1, 'msg' => '注册失败']);
     }
 
+    /**
+     * 登陆
+     *
+     * @param Request $request
+     * @return void
+     */
     public function login(Request $request)
     {
         $email = $request->input('email');
@@ -62,6 +68,12 @@ class UserController extends Controller
         return response()->json(['error' => 1, 'msg' => '密码错误']);
     }
 
+    /**
+     * 新增收藏
+     *
+     * @param Request $request
+     * @return void
+     */
     public function collection(Request $request)
     {
         $uid = $request->input('uid');
@@ -116,7 +128,7 @@ class UserController extends Controller
     }
 
     /**
-     * 用户收藏
+     * 用户收藏集合
      *
      * @param int $id
      * @return void

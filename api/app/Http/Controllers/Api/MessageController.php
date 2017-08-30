@@ -73,4 +73,23 @@ class MessageController extends Controller
         return response()->json($result);
     }
     
+    /**
+     * 消息总数
+     *
+     * @return void
+     */
+    public function count(Request $request)
+    {
+        $type = null !== $request->input('type') ? $request->input('type') : null ;
+        if ($type) {
+            $count = Message::where('type', $type)->count();
+        } else {
+            $count = Message::count();
+        }
+
+        $result['error'] = 0;
+        $result['msg'] = "获取成功";
+        $result['result'] = $count;
+        return response()->json($result);
+    }
 }
