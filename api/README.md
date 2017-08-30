@@ -8,7 +8,6 @@
 |message|     string     |执行结构消息|
 
 #### 响应示例
-
 ```json
 {
 	"result": {},
@@ -45,7 +44,7 @@
 > |   id    |   int  |   必填   |   0   |诗词id|
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "获取成功",
@@ -79,7 +78,7 @@
 > |   type  |   int  |   可选   |   1   |消息类型|
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "获取成功",
@@ -123,7 +122,7 @@
 > |   type  |   int  |   可选   |   null   |消息类型|
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "获取成功",
@@ -148,7 +147,7 @@
 > |   nickname  |   int  |   必填   |   null   |昵称|
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "注册成功"
@@ -170,7 +169,7 @@
 > |   password  | string |   必填   | null |密码|
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "登陆成功",
@@ -200,7 +199,7 @@
 > |   mid  |   int  |   必填   |   null   | 信息id |
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "收藏成功"
@@ -221,7 +220,7 @@
 > |   id  |   int  |   必填   |   null   | 收藏id |
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "取消成功"
@@ -242,7 +241,7 @@
 > |   id  |   int  |   必填   |   null   | 用户id |
 
 - 返回示例
-> ```json
+```json
 {
     "error": 0,
     "msg": "获取成功",
