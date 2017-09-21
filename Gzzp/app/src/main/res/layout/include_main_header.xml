@@ -127,8 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:src="@drawable/icon_earth" />
+                android:paddingTop="12dp"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -85,6 +85,7 @@
 
     <string name="exit_des">再按一次退出程序</string>
 
+    <string name="collect">收藏</string>
     <string name="collect_alert_content">收藏该信息，方便查找</string>
     <string name="cancel_collect_title">取消收藏</string>
     <string name="cancel_collect_tip">取消之后将不再展示，确认取消？</string>
@@ -104,10 +105,11 @@
 
     <string name="qq">QQ好友</string>
     <string name="moments">微信朋友圈</string>
-    <string name="collection">微信朋友圈</string>
+    <string name="collection">微信收藏</string>
     <string name="wechat">微信好友</string>
     <string name="qzone">QQ空间</string>
     <string name="sine">新浪微博</string>
+    <string name="open_browser">浏览器打开</string>
 
     <string name="wait_for_updating">功能开发中，敬请期待</string>
 </resources>

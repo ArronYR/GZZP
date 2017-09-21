@@ -26,6 +26,8 @@ import com.helloarron.gzzp.utils.GzzpPreference;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
+import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
+import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
@@ -64,7 +66,7 @@ public class MessageActivity extends GzzpBaseActivity {
         setTitle(getString(R.string.message_title));
         setTitleVisible();
         setSearchBarGone();
-        setRightIconVisible();
+        setRightIconGone();
         setLeftAction(R.drawable.icon_back, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,16 +76,6 @@ public class MessageActivity extends GzzpBaseActivity {
                 Intent intent = getIntent();
                 setResult(Activity.RESULT_OK, intent);
                 finish();
-            }
-        });
-
-        setRightAction(R.drawable.icon_earth, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
             }
         });
 
@@ -116,25 +108,32 @@ public class MessageActivity extends GzzpBaseActivity {
         getData(id);
 
         boomMenuButton = (BoomMenuButton) findViewById(R.id.bmb);
-        boomMenuButton.setButtonEnum(ButtonEnum.SimpleCircle);
-        boomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_3_3);
-        boomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_3_3);
+        boomMenuButton.setButtonEnum(ButtonEnum.TextInsideCircle);
+        boomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_5_3);
+        boomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_5_3);
         for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
-            SimpleCircleButton.Builder builder = new SimpleCircleButton.Builder()
+            TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder()
                     .rippleEffect(true)
                     .normalImageRes(BuilderManager.getImageResource())
+                    .normalTextRes(BuilderManager.getTextResource())
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
                             switch (index){
                                 case 0:
-                                     shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_WAY_WEBPAGE);
-//                                    showToast(getResources().getString(R.string.wait_for_updating));
+                                    shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_TYPE_TALK);
                                     break;
                                 case 1:
+                                    shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_TYPE_FRENDS);
                                     break;
                                 case 2:
+                                    shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_TYPE_FAVORITE);
+                                    break;
+                                case 3:
                                     collect(id);
+                                    break;
+                                case 4:
+                                    openInBrowser(url);
                                     break;
                                 default:
                                     break;
@@ -149,7 +148,7 @@ public class MessageActivity extends GzzpBaseActivity {
      * 获取招聘详情
      * @param id
      */
-    private void getData(String id) {
+    private void getData(final String id) {
         DhNet gzzpNet = new DhNet(new API().message + id);
         gzzpNet.doGetInDialog(new NetTask(self) {
 
@@ -160,7 +159,7 @@ public class MessageActivity extends GzzpBaseActivity {
                     String content = JSONUtil.getString(jo, "content");
 
                     wvContent.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
-                    url = JSONUtil.getString(jo, "url");
+                    url = Const.WEBPAGE + id;
                     title = JSONUtil.getString(jo, "type_text");
                     description = JSONUtil.getString(jo, "title");
 
@@ -200,6 +199,17 @@ public class MessageActivity extends GzzpBaseActivity {
                 }
             }
         });
+    }
+
+    /**
+     * 浏览器打开
+     * @param url
+     */
+    public void openInBrowser(String url){
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     @Override

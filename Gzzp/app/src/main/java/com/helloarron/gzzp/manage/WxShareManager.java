@@ -34,6 +34,8 @@ public class WxShareManager {
     public static final int WEIXIN_SHARE_TYPE_TALK = SendMessageToWX.Req.WXSceneSession;
     // 朋友圈
     public static final int WEIXIN_SHARE_TYPE_FRENDS = SendMessageToWX.Req.WXSceneTimeline;
+    // 收藏
+    public static final int WEIXIN_SHARE_TYPE_FAVORITE = SendMessageToWX.Req.WXSceneFavorite;
 
     private static WxShareManager instance;
     private static String weixinAppId;

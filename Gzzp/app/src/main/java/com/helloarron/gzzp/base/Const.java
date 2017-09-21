@@ -19,9 +19,10 @@ public class Const {
     // 保存的确切位置
     public static final String SAVE_REAL_PATH = SAVE_PIC_PATH + "/GZZP";
 
-    public final static String HOST = "https://gzzp.helloarron.com";
+    public final static String HOST = "http://gzzp.helloarron.com/";
 
     public final static String GZZP = "http://www.163gz.com/gzzp8/zkxx/";
+    public final static String WEBPAGE = HOST + "/detail/";
 
     // 微信开发者平台
     public final static String WX_APP_ID = "wx53d7536afe86c1a0";
