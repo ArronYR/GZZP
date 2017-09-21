@@ -216,6 +216,10 @@ public class HomePageFragment extends GzzpBaseFagment implements View.OnClickLis
         listV.setAdapter(adapter);
     }
 
+    /**
+     * 收藏
+     * @param mid
+     */
     private void collect(String mid) {
         String uid = per.getUid();
         if (TextUtils.isEmpty(uid)) {

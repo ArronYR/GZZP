@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.helloarron.dhroid.ioc.IocContainer;
 import com.helloarron.dhroid.net.DhNet;
 import com.helloarron.dhroid.net.JSONUtil;
 import com.helloarron.dhroid.net.NetTask;
@@ -20,6 +22,7 @@ import com.helloarron.gzzp.base.Const;
 import com.helloarron.gzzp.base.GzzpBaseActivity;
 import com.helloarron.gzzp.manage.BuilderManager;
 import com.helloarron.gzzp.manage.WxShareManager;
+import com.helloarron.gzzp.utils.GzzpPreference;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
@@ -37,6 +40,8 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MessageActivity extends GzzpBaseActivity {
 
+    public GzzpPreference per;
+
     private Context context;
     public String url = Const.GZZP;
     public String title, description;
@@ -44,9 +49,11 @@ public class MessageActivity extends GzzpBaseActivity {
     public WebView wvContent;
 
     // 分享按钮
-    BoomMenuButton boomMenuButton;
-    WxShareManager shareManager;
-    WxShareManager.ShareContentWebpage shareContentWebpage;
+    public BoomMenuButton boomMenuButton;
+    public WxShareManager shareManager;
+    public WxShareManager.ShareContentWebpage shareContentWebpage;
+
+    public String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +88,8 @@ public class MessageActivity extends GzzpBaseActivity {
         });
 
         shareManager = WxShareManager.getInstance(context);
+        per = IocContainer.getShare().get(GzzpPreference.class);
+        per.load();
     }
 
     @Override
@@ -91,7 +100,7 @@ public class MessageActivity extends GzzpBaseActivity {
             return;
         }
 
-        String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
 
         wvContent = (WebView) findViewById(R.id.wb_content);
         wvContent.getSettings().setDefaultTextEncodingName("UTF -8");
@@ -119,11 +128,13 @@ public class MessageActivity extends GzzpBaseActivity {
                         public void onBoomButtonClick(int index) {
                             switch (index){
                                 case 0:
-                                    shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_WAY_WEBPAGE);
+                                     shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_WAY_WEBPAGE);
+//                                    showToast(getResources().getString(R.string.wait_for_updating));
                                     break;
                                 case 1:
                                     break;
                                 case 2:
+                                    collect(id);
                                     break;
                                 default:
                                     break;
@@ -156,6 +167,33 @@ public class MessageActivity extends GzzpBaseActivity {
                     shareContentWebpage = shareManager.new ShareContentWebpage(title, description, url, R.mipmap.ic_launcher);
                     boomMenuButton.setVisibility(View.VISIBLE);
                 } else if (response.isSuccess()) {
+                    showToast(response.getErrorMsg());
+                } else {
+                    showToast(getString(R.string.net_bad));
+                }
+            }
+        });
+    }
+
+    /**
+     * 收藏
+     * @param mid
+     */
+    private void collect(String mid) {
+        String uid = per.getUid();
+        if (TextUtils.isEmpty(uid)) {
+            showToast(getString(R.string.need_login));
+            return;
+        }
+        DhNet gzzpNet = new DhNet(new API().collection);
+        gzzpNet.addParam("uid", uid);
+        gzzpNet.addParam("mid", mid);
+        gzzpNet.doPost(new NetTask(self) {
+            @Override
+            public void doInUI(Response response, Integer transfer) {
+                if (response.isSuccess() && !response.isErrorCode()) {
+                    showToast(getString(R.string.add_collect));
+                } else if (response.success) {
                     showToast(response.getErrorMsg());
                 } else {
                     showToast(getString(R.string.net_bad));

@@ -108,4 +108,6 @@
     <string name="wechat">微信好友</string>
     <string name="qzone">QQ空间</string>
     <string name="sine">新浪微博</string>
+
+    <string name="wait_for_updating">功能开发中，敬请期待</string>
 </resources>
