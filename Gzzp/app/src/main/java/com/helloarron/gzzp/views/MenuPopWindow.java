@@ -61,9 +61,9 @@ public class MenuPopWindow extends PopupWindow {
     public void showPopupWindow(View parent) {
         if (!this.isShowing()) {
             // 以下拉方式显示popupwindow
-            int parent_width = parent.getWidth();//获取对应的控件view宽度px值
-            int width = parent_width / 4;//获取x轴偏移量px
-            this.showAsDropDown(parent, width, 0);
+            int parent_width = parent.getWidth();   // 获取对应的控件view宽度px值
+            int width = parent_width / 4;           // 获取x轴偏移量px
+            this.showAsDropDown(parent, width, -18);
         } else {
             this.dismiss();
         }

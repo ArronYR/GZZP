@@ -65,7 +65,7 @@ public class MainActivity extends FragmentActivity {
         PgyUpdateManager.register(this, "TljCxu2AOMavxJ7");
 
         // 设置通知栏颜色
-        GzzpUtils.setWindowStatusBarColor(this, getResources().getColor(R.color.status_bar_color));
+        GzzpUtils.setWindowStatusBarColor(this, getResources().getColor(R.color.teal_400));
     }
 
     private void initView() {

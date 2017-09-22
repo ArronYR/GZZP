@@ -35,7 +35,7 @@ class MessageController extends Controller
             $data->created_at = $message->created_at;
             
             if ($message->content == null) {
-                $content = "<div style='margin-top:200px;text-align:center'>请点击右上角图标打开原链接查看</div>";
+                $content = "<div style='margin-top:200px;text-align:center'>请点击左下角图标通过浏览器打开</div>";
                 $data->content = $content;
             }
             

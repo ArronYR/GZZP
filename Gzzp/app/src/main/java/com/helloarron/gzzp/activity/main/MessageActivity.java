@@ -159,7 +159,7 @@ public class MessageActivity extends GzzpBaseActivity {
                     String content = JSONUtil.getString(jo, "content");
 
                     wvContent.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
-                    url = Const.WEBPAGE + id;
+                    url = Const.WEB_PAGE + id;
                     title = JSONUtil.getString(jo, "type_text");
                     description = JSONUtil.getString(jo, "title");
 

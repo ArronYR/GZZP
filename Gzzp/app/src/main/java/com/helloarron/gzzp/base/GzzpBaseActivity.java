@@ -31,7 +31,7 @@ public abstract class GzzpBaseActivity extends BaseActivity {
         self = this;
 
         // 设置通知栏颜色
-        GzzpUtils.setWindowStatusBarColor(this, getResources().getColor(R.color.status_bar_color));
+        GzzpUtils.setWindowStatusBarColor(this, getResources().getColor(R.color.teal_400));
     }
 
     @Override

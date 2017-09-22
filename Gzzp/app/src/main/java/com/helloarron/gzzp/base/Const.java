@@ -22,7 +22,7 @@ public class Const {
     public final static String HOST = "http://gzzp.helloarron.com/";
 
     public final static String GZZP = "http://www.163gz.com/gzzp8/zkxx/";
-    public final static String WEBPAGE = HOST + "/detail/";
+    public final static String WEB_PAGE = HOST + "/detail/";
 
     // 微信开发者平台
     public final static String WX_APP_ID = "wx53d7536afe86c1a0";

@@ -128,7 +128,7 @@ class UserController extends Controller
     }
 
     /**
-     * 用户收藏集合
+     * 用户收藏
      *
      * @param int $id
      * @return void
