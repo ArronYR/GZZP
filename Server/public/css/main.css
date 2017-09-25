@@ -1,0 +1,103 @@
+/**
+* Arron 2017-9-25
+*/
+html,body{
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+#app{
+    height: inherit;
+}
+.layout{
+    background: #f5f7f9;
+    position: relative;
+    height: inherit;
+    min-height: max-content;
+}
+/* 顶部辅助菜单 */
+.layout-ceiling{
+    background: #464c5b;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.layout-ceiling-main{
+    float: right;
+    margin-right: 15px;
+}
+.layout-ceiling-main span,
+.layout-ceiling-main a{
+    color: #9ba7b5;
+}
+/* header */
+.layout-header{
+    margin: 0 auto;
+    padding: 0 5%;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.layout-logo{
+    width: 100px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 20px;
+}
+.layout-logo img{
+    height: 100%;
+}
+/* content */
+.layout-content{
+    padding-bottom: 80px;
+    position: relative;
+    height: min-content;
+}
+.register-wrapper,
+.login-wrapper{
+    text-align: center;
+    padding-top: 50px;
+}
+.register-content,
+.login-content{
+    width: 350px;
+    margin: 0 auto;
+}
+.ivu-menu-horizontal {
+    height: 80px;
+    line-height: 80px;
+    float: right;
+}
+.ivu-menu-horizontal.ivu-menu-light:after{
+    display: none;
+}
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item a,
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu a{
+    color: #495060;
+    display: inline-block;
+}
+.ivu-menu-submenu a{
+    display: block;
+    color: #495060;
+}
+.ivu-menu-item-active a{
+    color: #2d8cf0!important;
+}
+.ivu-timeline-item-content{
+    top: -6px;
+    font-size: 14px;
+}
+.collections-wrapper{
+    padding: 40px 5% 0;
+    width: inherit;
+}
+/* footer */
+.layout-footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 0 20px;
+    color: #9ea7b4;
+}
