@@ -32,4 +32,10 @@
     <color name="grey_200">#eeeeee</color>
     <color name="grey_400">#bdbdbd</color>
     <color name="grey_500">#9e9e9e</color>
+
+    <color name="color_wechat">#50AE55</color>
+    <color name="color_moments">#339EF1</color>
+    <color name="color_favorite">#EB965E</color>
+    <color name="color_collection">#6740B5</color>
+    <color name="color_open_browser">#F2443D</color>
 </resources>

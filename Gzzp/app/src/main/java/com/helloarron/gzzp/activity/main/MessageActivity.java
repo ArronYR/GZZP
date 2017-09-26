@@ -116,10 +116,11 @@ public class MessageActivity extends GzzpBaseActivity {
                     .rippleEffect(true)
                     .normalImageRes(BuilderManager.getImageResource())
                     .normalTextRes(BuilderManager.getTextResource())
+                    .normalColorRes(BuilderManager.getColorResource())
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
-                            switch (index){
+                            switch (index) {
                                 case 0:
                                     shareManager.shareByWeixin(shareContentWebpage, WxShareManager.WEIXIN_SHARE_TYPE_TALK);
                                     break;
@@ -146,6 +147,7 @@ public class MessageActivity extends GzzpBaseActivity {
 
     /**
      * 获取招聘详情
+     *
      * @param id
      */
     private void getData(final String id) {
@@ -160,8 +162,8 @@ public class MessageActivity extends GzzpBaseActivity {
 
                     wvContent.loadDataWithBaseURL(null, content, "text/html", "UTF-8", null);
                     url = Const.WEB_PAGE + id;
-                    title = JSONUtil.getString(jo, "type_text");
-                    description = JSONUtil.getString(jo, "title");
+                    title = JSONUtil.getString(jo, "title");
+                    description = "【" + JSONUtil.getString(jo, "type_text") + "】" + JSONUtil.getString(jo, "title");
 
                     shareContentWebpage = shareManager.new ShareContentWebpage(title, description, url, R.mipmap.ic_launcher);
                     boomMenuButton.setVisibility(View.VISIBLE);
@@ -176,6 +178,7 @@ public class MessageActivity extends GzzpBaseActivity {
 
     /**
      * 收藏
+     *
      * @param mid
      */
     private void collect(String mid) {
@@ -203,9 +206,10 @@ public class MessageActivity extends GzzpBaseActivity {
 
     /**
      * 浏览器打开
+     *
      * @param url
      */
-    public void openInBrowser(String url){
+    public void openInBrowser(String url) {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setData(Uri.parse(url));

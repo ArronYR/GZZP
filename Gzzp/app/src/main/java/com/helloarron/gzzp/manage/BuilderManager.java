@@ -19,6 +19,7 @@ public class BuilderManager {
 
     private static int imageResourceIndex = 0;
     private static int textResourceIndex = 0;
+    private static int colorResourceIndex = 0;
 
     private static int[] imageResources = new int[]{
             R.drawable.icon_wechat,
@@ -36,6 +37,14 @@ public class BuilderManager {
             R.string.open_browser
     };
 
+    private static int[] colorResources = new int[]{
+            R.color.color_wechat,
+            R.color.color_moments,
+            R.color.color_favorite,
+            R.color.color_collection,
+            R.color.color_open_browser
+    };
+
     public static int getImageResource() {
         if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
         return imageResources[imageResourceIndex++];
@@ -44,5 +53,10 @@ public class BuilderManager {
     public static int getTextResource() {
         if (textResourceIndex >= textResources.length) textResourceIndex = 0;
         return textResources[textResourceIndex++];
+    }
+
+    public static int getColorResource() {
+        if (colorResourceIndex >= colorResources.length) colorResourceIndex = 0;
+        return colorResources[colorResourceIndex++];
     }
 }
