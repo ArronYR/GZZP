@@ -31,9 +31,9 @@
     <string name="copyright">©2017 helloarron.com</string>
 
     <string name="current_version">当前版本</string>
-    <string name="next_version_plan">下版本计划：</string>
-    <string name="next_version_plan_one">1.支持QQ、微信分享给好友；</string>
-    <string name="next_version_plan_two">2.完善和优化app；</string>
+    <string name="next_version_plan">版本特性：</string>
+    <string name="next_version_plan_one">1.支持分享到微信好友、朋友圈、微信收藏；</string>
+    <string name="next_version_plan_two">2.支持关键词检索、长按收藏等。</string>
 
     <string name="warning">警告</string>
     <string name="error">错误</string>

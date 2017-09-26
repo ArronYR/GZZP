@@ -53,8 +53,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/margin_padding_m"
-                android:paddingLeft="@dimen/margin_padding_xxl"
-                android:paddingRight="@dimen/margin_padding_xxl"
                 android:paddingTop="@dimen/margin_padding_m">
 
                 <TextView
