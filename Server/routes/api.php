@@ -40,3 +40,9 @@ Route::middleware('api')
 Route::middleware('api')
     ->get('/collections/{id}', ['uses'=>'Api\UserController@collections'])
     ->where(['id' => '[0-9]+']);
+
+Route::middleware('api')
+    ->get('/stat/countByType', ['uses'=>'Api\StatController@countByType']);
+
+Route::middleware('api')
+    ->get('/stat/recruit', ['uses'=>'Api\StatController@recruit']);

@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <example></example>
+    
+    <message-stat></message-stat>
+
 @endsection

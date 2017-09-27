@@ -42,22 +42,7 @@
 <body>
     <div id="app">
         <div class="layout">
-            <div class="layout-ceiling">
-                <div class="layout-ceiling-main">
-                    @if (Auth::guest())
-                        <a href="{{ url('/login') }}">登录</a> |
-                        <a href="{{ url('/register') }}">注册</a> |
-                    @else
-                        <span> {{ Auth::user()->name }} </span> |
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出</a> |
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    @endif
-                        <a href="{{ url('/docs') }}">接口文档</a> |
-                        <a href="https://github.com/ArronYR">GitHub</a>
-                </div>
-            </div>
+            @include('common.ceiling')
             <div class="layout-header">
                 <a href="{{ url('/') }}" class="layout-logo">
                     <img src="{{ asset('img/icon_app.png') }}" alt="Icon">
@@ -69,9 +54,7 @@
             <div class="layout-content">
                 @yield('content')
             </div>
-            <div class="layout-footer">
-                2016-2017 &copy; Arron
-            </div>
+            @include('common.footer')
         </div>
     </div>
 

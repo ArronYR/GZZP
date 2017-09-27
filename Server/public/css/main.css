@@ -78,11 +78,18 @@ html,body{
     display: inline-block;
 }
 .ivu-menu-submenu a{
-    display: block;
+    display: inline-block;
     color: #495060;
 }
 .ivu-menu-item-active a{
     color: #2d8cf0!important;
+}
+.ivu-select-dropdown a{
+    display: inline-block;
+    color: #495060;
+}
+.ivu-select-dropdown .ivu-menu-item-selected a{
+    color: #fff!important;
 }
 .ivu-timeline-item-content{
     top: -6px;
@@ -100,4 +107,13 @@ html,body{
     text-align: center;
     padding: 10px 0 20px;
     color: #9ea7b4;
+}
+
+@media screen and (max-width: 1245px) {
+    .layout-header{
+        padding: 0;
+    }
+    .layout-logo{
+        display: none;
+    }
 }

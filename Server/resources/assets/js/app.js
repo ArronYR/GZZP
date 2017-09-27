@@ -22,7 +22,10 @@ Vue.component('register-form', require('./components/RegisterForm.vue'));
 Vue.component('login-form', require('./components/LoginForm.vue'));
 Vue.component('repw-form', require('./components/RepwForm.vue'));
 Vue.component('user-menu', require('./components/UserMenu.vue'));
+Vue.component('db-menu', require('./components/DbMenu.vue'));
 Vue.component('collections', require('./components/Collection.vue'));
+Vue.component('message-table', require('./components/MessageTable'));
+Vue.component('message-stat', require('./components/MessageStat'));
 
 const app = new Vue({
     el: '#app'

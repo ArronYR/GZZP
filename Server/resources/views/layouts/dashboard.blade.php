@@ -30,6 +30,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -40,7 +41,19 @@
 </head>
 <body>
     <div id="app">
-        @yield('content')
+        <div class="layout">
+            @include('common.ceiling')
+            <div class="layout-header">
+                <a href="{{ url('/') }}" class="layout-logo">
+                    <img src="{{ asset('img/icon_app.png') }}" alt="Icon">
+                </a>
+                <db-menu active-name="{{ Request::path() }}"></db-menu>
+            </div>
+            <div class="layout-content">
+                @yield('content')
+            </div>
+            @include('common.footer')
+        </div>
     </div>
 
     <!-- Scripts -->

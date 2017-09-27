@@ -81,26 +81,26 @@
         methods: {
             handlePage(page) {
                 axios.get('/api/collections/' + this.uid, {
-                        params: {
-                            page: page
-                        }
-                    })
-                    .then( response => {
-                        if (response.data.error) {
-                            this.$Message.error(response.data.msg);
-                        }else{
-                            this.items = response.data.result.data;
-                            this.total = response.data.result.total;
-                        }
-                        this.$Loading.finish();
-                    })
-                    .catch( error => {
-                        this.$Message.error("发生错误");
-                        this.$Loading.error();
-                    })
-                    .then( () => {
-                        this.spinShow =  false;
-                    });
+                    params: {
+                        page: page
+                    }
+                })
+                .then( response => {
+                    if (response.data.error) {
+                        this.$Message.error(response.data.msg);
+                    }else{
+                        this.items = response.data.result.data;
+                        this.total = response.data.result.total;
+                    }
+                    this.$Loading.finish();
+                })
+                .catch( error => {
+                    this.$Message.error("发生错误");
+                    this.$Loading.error();
+                })
+                .then( () => {
+                    this.spinShow =  false;
+                });
             }
         },
     }

@@ -36,6 +36,5 @@ Route::get('/docs', function () {
     return view('docs');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'Dashboard\HomeController@index')->name('dashboard');
+Route::get('/dashboard/type/{id}', 'Dashboard\HomeController@message');
