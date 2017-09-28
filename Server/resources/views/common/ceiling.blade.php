@@ -11,6 +11,7 @@
             </form>
         @endif
             <a href="{{ url('/docs') }}">接口文档</a> |
-            <a href="https://github.com/ArronYR">GitHub</a>
+            <a href="https://github.com/ArronYR">GitHub</a> |
+            <download-modal text="下载App"></download-modal>
     </div>
 </div>

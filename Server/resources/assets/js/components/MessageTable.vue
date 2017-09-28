@@ -50,7 +50,7 @@
                             return h('div', [
                                 h('a', {
                                     attrs: {
-                                        href: params.row.url,
+                                        href: "/detail/" + params.row.id,
                                         target: '_blank'
                                     }
                                 }, params.row.title)

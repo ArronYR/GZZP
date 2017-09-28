@@ -306,7 +306,7 @@
                 });
             },
             getCountByDate(type, start, end) {
-                axios.get('api/stat/countByDate', {
+                axios.get('/api/stat/countByDate', {
                     params: {
                         type: type,
                         start: start,

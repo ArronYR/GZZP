@@ -26,6 +26,7 @@ Vue.component('db-menu', require('./components/DbMenu.vue'));
 Vue.component('collections', require('./components/Collection.vue'));
 Vue.component('message-table', require('./components/MessageTable'));
 Vue.component('message-stat', require('./components/MessageStat'));
+Vue.component('download-modal', require('./components/DownloadModal'));
 
 const app = new Vue({
     el: '#app'

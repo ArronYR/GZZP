@@ -121,6 +121,7 @@ html,body{
 .td-title{
     min-width: 300px !important;
 }
+
 @media screen and (max-width: 640px){
     .td-title{
         width: 300px;
