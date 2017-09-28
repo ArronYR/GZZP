@@ -27,7 +27,8 @@
         <title>{{ config('app.name', 'Gzzp') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/raleway.css') }}" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -36,55 +37,46 @@
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
+                font-size: 16px;
                 height: 100vh;
                 margin: 0;
             }
-
             .full-height {
                 height: 100vh;
             }
-            
             .flex-center::before{
                 content: "";
             }
-
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
                 flex-direction: column;
             }
-
             .footer{
                 color: #636b6f;
                 padding: 1rem;
             }
-
             .footer a{
                 color: #636b6f;
                 font-weight: 100;
                 letter-spacing: .1rem;
                 text-decoration: none;
             }
-
             .position-ref {
                 position: relative;
             }
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
             .content {
                 text-align: center;
             }
-
             .title {
                 font-size: 84px;
             }
-
             .links > a {
                 display: inline-block;
                 color: #636b6f;
@@ -95,9 +87,13 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
             .m-b-md {
                 margin-bottom: 30px;
+            }
+            @media screen and (max-width: 560px){
+                .content .links > a{
+                    display: block;
+                }
             }
         </style>
     </head>

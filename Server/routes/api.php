@@ -45,4 +45,10 @@ Route::middleware('api')
     ->get('/stat/countByType', ['uses'=>'Api\StatController@countByType']);
 
 Route::middleware('api')
-    ->get('/stat/recruit', ['uses'=>'Api\StatController@recruit']);
+    ->get('/stat/allCount', ['uses'=>'Api\StatController@allCount']);
+
+Route::middleware('api')
+    ->get('/stat/recruitCount', ['uses'=>'Api\StatController@recruitCount']);
+
+Route::middleware('api')
+    ->get('/stat/countByDate', ['uses'=>'Api\StatController@countByDate']);

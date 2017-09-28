@@ -25,6 +25,7 @@
         
         <title>{{ config('app.name', 'Gzzp') }} - @yield('title', "Error").</title>
 
+        <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
         <link href="{{ asset('css/lato.css') }}" rel="stylesheet" type="text/css">
 
         <style>

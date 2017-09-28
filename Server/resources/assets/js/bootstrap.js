@@ -1,13 +1,17 @@
 
 window._ = require('lodash');
+window.moment = require('moment');
 
 window.echarts = require('echarts/lib/echarts');
+require('echarts/lib/chart/bar');
 require('echarts/lib/chart/pie');
+require('echarts/lib/chart/line');
 // 引入提示框和标题组件
 require('echarts/lib/component/title');
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/legendScroll');
 require('echarts/lib/component/toolbox');
+require('echarts/lib/component/grid');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

@@ -2,12 +2,12 @@
     .msg-wrapper{
         padding: 20px;
     }
-    .action-wrapper{
-        padding: 20px 0;
+    .action-wrapper > div{
+        padding: 10px 0;
     }
     .page-wrapper{
         text-align: right;
-        padding: 3px 0;
+        padding-top: 13px !important;
     }
 </style>
 <template>
@@ -17,7 +17,7 @@
                 <Input v-model="keyword" placeholder="输入关键词" icon="ios-search" style="max-width: 400px" @on-change="kwChange"></Input>
             </Col>
             <Col :xs="24" :sm="24" :md="12" :lg="12" class="page-wrapper">
-                <Page :total="total" :page-size="20" size="small" show-total show-elevator @on-change="handlePage"></Page>
+                <Page :total="total" :page-size="20" size="small" @on-change="handlePage"></Page>
             </Col>
         </Row>
         <Table :loading="loading" :columns="columns" :data="messages"></Table>
@@ -40,17 +40,12 @@
                         key: 'id',
                         width: 80,
                         sortable: true,
-                        fixed: "left",
-                    },
-                    {
-                        title: '类型',
-                        key: 'type_text',
-                        width: 100
                     },
                     {
                         title: '标题',
                         key: 'title',
-                        ellipsis: false,
+                        ellipsis: true,
+                        className: 'td-title',
                         render: (h, params) => {
                             return h('div', [
                                 h('a', {
@@ -63,9 +58,15 @@
                         }
                     },
                     {
+                        title: '类型',
+                        key: 'type_text',
+                        width: 90,
+                        className: 'td-type'
+                    },
+                    {
                         title: '发布时间',
                         key: 'published_at',
-                        width: 100,
+                        width: 120,
                         sortable: true
                     }
                 ],
