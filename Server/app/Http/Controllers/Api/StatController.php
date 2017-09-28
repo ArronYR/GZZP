@@ -107,9 +107,11 @@ class StatController extends Controller
         
         $start = $request->input('start', date("Y-m-d", time()));
         $end = $request->input('end', date("Y-m-d", time()));
+        $keyword = $request->input('keyword', '');
 
         $messages = DB::table('messages')
             ->select(DB::raw('count(*) as msg_count, published_at'))
+            ->where('title', 'like', "%$keyword%")
             ->whereIn('type', $types)
             ->whereBetween('published_at', array($start, $end))
             ->groupBy('published_at')

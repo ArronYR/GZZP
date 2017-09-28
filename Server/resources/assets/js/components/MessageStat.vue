@@ -28,6 +28,7 @@
     }
     .action-wrapper{
         padding-left: 10px;
+        text-align: center;
     }
     .action-wrapper > div {
         padding: 0 0 10px;
@@ -77,6 +78,7 @@
                 <Select v-model="type" size="small" clearable style="width:100px" @on-change="handleType">
                     <Option v-for="item in types" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
+                <Input v-model="keyword" size="small" placeholder="关键词" icon="ios-search" style="max-width: 100px" @on-change="handleKwChange"></Input>
                 <RadioGroup v-model="latest" size="small" type="button" @on-change="handleLatest">
                     <Radio label="最近7天"></Radio>
                     <Radio label="最近30天"></Radio>
@@ -103,6 +105,7 @@
                 type: null,
                 start: moment().subtract(7, 'days').format('YYYY-MM-DD'),
                 end: moment().format('YYYY-MM-DD'),
+                keyword: '',
 
                 types: [
                     {
@@ -156,12 +159,15 @@
             this.getMessagesCount();
             this.getAllCount();
             this.getRecruitCount();
-            this.getCountByDate(this.type, this.start, this.end);
+            this.getCountByDate();
         },
         methods: {
             handleType(value) {
                 this.type = value !== '' ? value : null;
-                this.getCountByDate(this.type, this.start, this.end);
+                this.getCountByDate();
+            },
+            handleKwChange(event) {
+                this.getCountByDate();
             },
             handleLatest(value) {
                 if (value === '最近7天') {
@@ -172,9 +178,10 @@
                     this.start = moment().subtract(30, 'days').format('YYYY-MM-DD');
                 }else{
                     this.start = null;
+                    this.end = null;
                     this.custom = true;
                 }
-                this.getCountByDate(this.type, this.start, this.end);
+                this.getCountByDate();
             },
             handleDate(values) {
                 if (values[0] !== "" && values[1] !== 'undefined') {
@@ -182,9 +189,9 @@
                     this.end = values[1];
                 }else{
                     this.start = null;
-                    this.end = moment().format('YYYY-MM-DD');
+                    this.end = null;
                 }
-                this.getCountByDate(this.type, this.start, this.end);
+                this.getCountByDate();
             },
             getMessagesCount() {
                 axios.all([
@@ -305,12 +312,13 @@
                     countPie.setOption(option);
                 });
             },
-            getCountByDate(type, start, end) {
+            getCountByDate() {
                 axios.get('/api/stat/countByDate', {
                     params: {
-                        type: type,
-                        start: start,
-                        end: end
+                        type: this.type,
+                        start: this.start,
+                        end: this.end,
+                        keyword: this.keyword
                     }
                 })
                 .then( response => {
@@ -348,6 +356,9 @@
                                 data: response.data.result.keys,
                                 axisPointer: {
                                     type: 'shadow'
+                                },
+                                axisTick: {
+                                    alignWithLabel: true
                                 }
                             }
                         ],

@@ -14,7 +14,7 @@
     <div class="msg-wrapper">
         <Row class="action-wrapper">
             <Col :xs="24" :sm="24" :md="12" :lg="12" class="search-wrapper">
-                <Input v-model="keyword" placeholder="输入关键词" icon="ios-search" style="max-width: 400px" @on-change="kwChange"></Input>
+                <Input v-model="keyword" placeholder="输入关键词" icon="ios-search" style="max-width: 400px" @on-change="handleKwChange"></Input>
             </Col>
             <Col :xs="24" :sm="24" :md="12" :lg="12" class="page-wrapper">
                 <Page :total="total" :page-size="20" size="small" @on-change="handlePage"></Page>
@@ -79,7 +79,7 @@
             this.getData(this.typeId, 1, this.keyword);
         },
         methods: {
-            kwChange(event) {
+            handleKwChange(event) {
                 this.getData(this.typeId, 1, this.keyword);
             },
             handlePage(page) {
