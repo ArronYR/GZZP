@@ -13,7 +13,7 @@ html,body{
 .layout{
     background: #f5f7f9;
     position: relative;
-    height: inherit;
+    height: auto;
     min-height: max-content;
 }
 /* 顶部辅助菜单 */
