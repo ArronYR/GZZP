@@ -86,7 +86,7 @@ html,body{
 }
 .ivu-select-dropdown a{
     display: inline-block;
-    color: #495060;
+    color: #495060!important;
 }
 .ivu-select-dropdown .ivu-menu-item-selected a{
     color: #fff!important;

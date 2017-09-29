@@ -488,7 +488,7 @@
         <td style="text-align: center">执行结构code</td>
       </tr>
       <tr>
-        <td style="text-align: center">message</td>
+        <td style="text-align: center">msg</td>
         <td style="text-align: center">string</td>
         <td style="text-align: center">执行结构消息</td>
       </tr>
@@ -1116,6 +1116,15 @@
     </li>
   </ul>
 
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ec6a88e3807e8225993475da825c27a7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 </body>
 
