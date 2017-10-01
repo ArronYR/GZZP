@@ -84,7 +84,7 @@
                     <Radio label="最近30天"></Radio>
                     <Radio label="自定义"></Radio>
                 </RadioGroup>
-                <DatePicker type="daterange" v-show="custom" size="small" placement="bottom-start" placeholder="选择日期" style="width: 200px" @on-change="handleDate"></DatePicker>
+                <DatePicker ref="dp" type="daterange" v-show="custom" size="small" placement="bottom-start" placeholder="选择日期" style="width: 200px" @on-change="handleDate"></DatePicker>
             </div>
             <div id="count-date-bar" class="count-date-bar"></div>
         </div>
@@ -156,6 +156,10 @@
             }
         },
         mounted () {
+            this.countBar = echarts.init(document.getElementById('count-bar'));
+            this.countPie = echarts.init(document.getElementById('count-pie'));
+            this.countDateBar = echarts.init(document.getElementById('count-date-bar'));
+
             this.getMessagesCount();
             this.getAllCount();
             this.getRecruitCount();
@@ -180,6 +184,8 @@
                     this.start = null;
                     this.end = null;
                     this.custom = true;
+
+                    this.$refs['dp'].handleClear();
                 }
                 this.getCountByDate();
             },
@@ -209,7 +215,6 @@
             },
             getAllCount() {
                 axios.get('/api/stat/allCount').then( response => {
-                    var countBar = echarts.init(document.getElementById('count-bar'));
                     var option = {
                         title: {
                             text: '全部类型消息总数统计',
@@ -263,12 +268,11 @@
                             }
                         ]
                     };
-                    countBar.setOption(option);
+                    this.countBar.setOption(option);
                 });
             },
             getRecruitCount(){
                 axios.get('/api/stat/recruitCount').then( response => {
-                    var countPie = echarts.init(document.getElementById('count-pie'));
                     var option = {
                         title : {
                             text: '公司招聘区域统计',
@@ -309,7 +313,7 @@
                             }
                         ]
                     };
-                    countPie.setOption(option);
+                    this.countPie.setOption(option);
                 });
             },
             getCountByDate() {
@@ -322,7 +326,6 @@
                     }
                 })
                 .then( response => {
-                    var countDateBar = echarts.init(document.getElementById('count-date-bar'));
                     var option = {
                         title : {
                             text: '每日信息数统计',
@@ -375,11 +378,6 @@
                                         position: 'top'
                                     }
                                 },
-                                data: response.data.result.values
-                            },
-                            {
-                                name: '折线图',
-                                type: 'line',
                                 data: response.data.result.values,
                                 markPoint: {
                                     data: [
@@ -392,10 +390,16 @@
                                         {type: 'average', name: '平均值'}
                                     ]
                                 }
+                            },
+                            {
+                                name: '折线图',
+                                type: 'line',
+                                data: response.data.result.values,
+                                
                             }
                         ]
                     };
-                    countDateBar.setOption(option);
+                    this.countDateBar.setOption(option);
                 });
             }
         }
