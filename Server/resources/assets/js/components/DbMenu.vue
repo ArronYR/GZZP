@@ -2,18 +2,17 @@
     <Menu mode="horizontal" theme="light" :active-name="activeName">
         <MenuItem name="dashboard">
             <a href="/dashboard">
-                <Icon type="ios-paper"></Icon> 首页
+                <Icon type="home"></Icon> 首页
             </a>
         </MenuItem>
         <MenuItem name="dashboard/type/1">
             <a href="/dashboard/type/1">
-                <Icon type="settings"></Icon> 人事招考
+                <Icon type="ios-compose"></Icon> 人事招考
             </a>
         </MenuItem>
         <Submenu name="3">
             <template slot="title">
-                <Icon type="stats-bars"></Icon>
-                公司招聘
+                <Icon type="ios-paper"></Icon> 公司招聘
             </template>
             <MenuItem name="dashboard/type/2">
                 <a href="/dashboard/type/2">贵州招聘</a>
