@@ -5,6 +5,7 @@ const install = require('superagent-charset');
 const superagent = install(require('superagent'));
 const cheerio = require('cheerio');
 const escaper = require("true-html-escape");
+const moment = require('moment');
 const __ = require('underscore');
 const async = require('async');
 const url = require('url');
@@ -12,8 +13,6 @@ const mysql = require('mysql');
 const config = require('./config');
 const JPush = require("./node_modules/jpush-sdk/lib/JPush/JPush.js");
 const client = JPush.buildClient(config.jpush_appkey, config.jpush_secret);
-
-require("date-utils");
 
 const gzzpHost = 'www.163gz.com';
 const maxConcurrency = 3;
@@ -73,13 +72,13 @@ var inset = function (message) {
                         if (err) throw err;
                         new_messages += 1;
                     });
-                    console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [insert_query] ', query.sql);
+                    console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [insert_query] ', query.sql);
                 }
                 callback(null);
             });
         },
         function (callback) {
-            ep.emit('inset_data', message);
+            ep.emit('insert_data', message);
             callback(null);
         }
     ]);
@@ -98,7 +97,7 @@ var update = function (message) {
                     content: message.content
                 }, function (err, result) {
                     if (err) throw err;
-                    console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [update_query] ');
+                    console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [update_query] ');
                     callback(null);
                 });
             } else {
@@ -127,7 +126,7 @@ var getNeedContentMessages = function () {
         });
         // 命令 ep 重复监听 要获取内容的消息集合no_content_messages.length 次 `update_data` 事件再行动
         ep.after('update_data', no_content_messages.length, function (results) {
-            console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [update_data_end] ');
+            console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [update_data_end] ');
             // 关闭数据库连接
             connection.end();
             // connection.destroy();
@@ -232,7 +231,7 @@ var fetchUrl = function (obj, callback) {
 function push(msg) {
     client.push().setPlatform(JPush.ALL)
         .setAudience(JPush.ALL)
-        .setNotification('职位招聘-通知', JPush.android(msg, null, 1))
+        .setNotification('公司招聘-通知', JPush.android(msg, null, 1))
         .send(function (err, res) {
             if (err) {
                 console.log(err.message)
@@ -248,10 +247,10 @@ function push(msg) {
 async.mapLimit(urls, maxConcurrency, function (url, callback) {
     fetchUrl(url, callback);
 }, function (err, result) {
-    console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [message] ', messages.length);
-    // 命令 ep 重复监听 messages.length 次 `inset_data` 事件再行动
-    ep.after('inset_data', messages.length, function (results) {
-        console.log(Date.today().toFormat('YYYY-MM-DD HH24:MI:SS') + ' [inset_data_end] ');
+    console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [message] ', messages.length);
+    // 命令 ep 重复监听 messages.length 次 `insert_data` 事件再行动
+    ep.after('insert_data', messages.length, function (results) {
+        console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [insert_data_end] ');
         getNeedContentMessages();
     });
     // 插入每一条消息

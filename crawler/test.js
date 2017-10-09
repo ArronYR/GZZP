@@ -3,7 +3,6 @@ const config = require('./config');
 const JPush = require("./node_modules/jpush-sdk/lib/JPush/JPush.js");
 const client = JPush.buildClient(config.jpush_appkey, config.jpush_secret);
 
-require("date-utils");
 
 function seriesFunc() {
     async.series([
@@ -32,7 +31,7 @@ function seriesFunc() {
 // seriesFunc();
 
 function date() {
-    console.log(Date.today().toFormat('YYYY'));
+    console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
 }
 date();
 

@@ -17,10 +17,10 @@
   "dependencies": {
     "async": "*",
     "cheerio": "^0.22.0",
-    "date-utils": "^1.2.21",
     "eventproxy": "^0.3.5",
     "iconv-lite": "^0.4.16",
     "jpush-sdk": "^3.4.1",
+    "moment": "^2.18.1",
     "mysql": "^2.13.0",
     "superagent": "^3.5.2",
     "superagent-charset": "^1.2.0",
