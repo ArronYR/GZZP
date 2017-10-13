@@ -89,7 +89,8 @@ var getNeedContentMessages = function () {
         rows.forEach(function (row, index, rows) {
             let msgInfo = {
                 id: row.id,
-                url: row.url
+                url: row.url,
+                content: null
             };
             no_content_messages.push(msgInfo);
         });
@@ -98,7 +99,6 @@ var getNeedContentMessages = function () {
             console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [update_data_end] ');
             // 关闭数据库连接
             connection.end();
-            // connection.destroy();
             // 执行推送
             if (new_messages > 0) {
                 push("哇，有新的人事招考信息来啦~~，共有" + new_messages + "条哦");
@@ -116,19 +116,17 @@ var getNeedContentMessages = function () {
 var fetchContent = function (message, callback) {
     superagent.get(message.url)
         .charset()
-        .on('error', function (error) {
-            callback(null, message);
-        })
         .end(function (err, res) {
             if (err || typeof res.text == 'undefined') {
-                return callback(err, null);
+                callback(null, message);
+            } else {
+                let $ = cheerio.load(res.text, {
+                    decodeEntities: false
+                });
+                $('#zoom').children('table').remove();
+                message.content = __.unescape($('#zoom').html().replace(/(^\s*)|(\s*$)/g, ""));
+                callback(null, message);
             }
-            let $ = cheerio.load(res.text, {
-                decodeEntities: false
-            });
-            $('#zoom').children('table').remove();
-            message.content = __.unescape($('#zoom').html().replace(/(^\s*)|(\s*$)/g, ""));
-            callback(null, message);
         });
 };
 
@@ -141,7 +139,7 @@ var fetchContents = function (messages) {
         fetchContent(message, callback);
     }, function (err, result) {
         if (err) {
-            return console.log(err);
+            console.log(err);
         }
         result.forEach(function (message, idx, messages) {
             update(message);
@@ -161,9 +159,9 @@ function push(msg) {
             if (err) {
                 console.log(err.message)
             } else {
-                console.log('Sendno: ' + res.sendno)
-                console.log('Msg_id: ' + res.msg_id)
+                console.log('Sendno: ' + res.sendno, 'Msg_id: ' + res.msg_id)
             }
+            process.exit(0);
         });
 }
 
@@ -174,7 +172,7 @@ superagent.get(gzzpUrl)
     .charset() // 设置编码，默认utf-8
     .end(function (err, res) {
         if (err || typeof res.text == 'undefined') {
-            return console.log(err);
+            return console.log(err, '获取失败');
         }
         let $ = cheerio.load(res.text, {
             decodeEntities: false
