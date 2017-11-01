@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -155,7 +154,7 @@ public class HomePageFragment extends GzzpBaseFagment implements View.OnClickLis
     }
 
     private void getData(String keyword) {
-        adapter = new NetJSONAdapter(API.messages, self, R.layout.item_message_list);
+        adapter = new NetJSONAdapter(API.MESSAGES, self, R.layout.item_message_list);
         adapter.addparam("keyword", keyword);
         adapter.addparam("type", 1);
         adapter.fromWhat("result.data");
@@ -226,7 +225,7 @@ public class HomePageFragment extends GzzpBaseFagment implements View.OnClickLis
             showToast(self, getString(R.string.need_login));
             return;
         }
-        DhNet gzzpNet = new DhNet(new API().collection);
+        DhNet gzzpNet = new DhNet(new API().COLLECTION);
         gzzpNet.addParam("uid", uid);
         gzzpNet.addParam("mid", mid);
         gzzpNet.doPost(new NetTask(self) {

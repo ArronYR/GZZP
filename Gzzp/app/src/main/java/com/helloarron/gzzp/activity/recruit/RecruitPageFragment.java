@@ -5,11 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +28,6 @@ import com.helloarron.dhroid.net.JSONUtil;
 import com.helloarron.dhroid.net.NetTask;
 import com.helloarron.dhroid.net.Response;
 import com.helloarron.gzzp.R;
-import com.helloarron.gzzp.activity.home.HomePageFragment;
 import com.helloarron.gzzp.activity.main.MainActivity;
 import com.helloarron.gzzp.activity.main.MessageActivity;
 import com.helloarron.gzzp.activity.setting.SettingActivity;
@@ -42,7 +39,6 @@ import com.helloarron.gzzp.views.MenuPopWindow;
 import com.helloarron.gzzp.views.RefreshListViewAndMore;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -164,7 +160,7 @@ public class RecruitPageFragment extends GzzpBaseFagment implements View.OnClick
     }
 
     private void getData(String keyword) {
-        adapter = new NetJSONAdapter(API.messages, self, R.layout.item_message_list);
+        adapter = new NetJSONAdapter(API.MESSAGES, self, R.layout.item_message_list);
         adapter.addparam("keyword", keyword);
         adapter.addparam("type", typeIdx + 2);
         adapter.fromWhat("result.data");
@@ -232,7 +228,7 @@ public class RecruitPageFragment extends GzzpBaseFagment implements View.OnClick
             showToast(self, getString(R.string.need_login));
             return;
         }
-        DhNet gzzpNet = new DhNet(new API().collection);
+        DhNet gzzpNet = new DhNet(new API().COLLECTION);
         gzzpNet.addParam("uid", uid);
         gzzpNet.addParam("mid", mid);
         gzzpNet.doPost(new NetTask(self) {

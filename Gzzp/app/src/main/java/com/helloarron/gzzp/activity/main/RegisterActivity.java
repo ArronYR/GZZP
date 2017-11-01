@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.helloarron.dhroid.net.DhNet;
 import com.helloarron.dhroid.net.NetTask;
@@ -81,7 +80,7 @@ public class RegisterActivity extends GzzpBaseActivity implements
             showToast(getString(R.string.nickname_to_long));
             return;
         }
-        DhNet gzzpNet = new DhNet(new API().register);
+        DhNet gzzpNet = new DhNet(new API().REGISTER);
         gzzpNet.addParam("email", account);
         gzzpNet.addParam("password", password);
         gzzpNet.addParam("nickname", nickname);

@@ -35,15 +35,6 @@ public class NormalDialog extends DialogImpl {
     }
 
     public Dialog showItemDialog(Context context, String title, CharSequence[] items, final DialogCallBack callback) {
-        // new AlertDialog.Builder(context)
-        // .setTitle(title).setItems(items, new DialogInterface.OnClickListener(){
-        //
-        // public void onClick(DialogInterface dialog, int which) {
-        // if(callback!=null){
-        // callback.onClick(which);
-        // }
-        // }
-        // }).show();
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         if (items != null) {
             for (int i = 0; i < items.length; i++) {

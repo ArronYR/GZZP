@@ -2,7 +2,6 @@ package com.helloarron.gzzp.wxapi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.widget.Toast;
 
 import com.helloarron.dhroid.activity.BaseActivity;
@@ -17,7 +16,9 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler {
 
-    /**分享到微信接口**/
+    /**
+     * 分享到微信接口
+     **/
     private IWXAPI mWxApi;
 
     @Override

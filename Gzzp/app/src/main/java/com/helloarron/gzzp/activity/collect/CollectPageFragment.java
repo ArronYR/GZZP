@@ -22,7 +22,6 @@ import com.helloarron.dhroid.net.JSONUtil;
 import com.helloarron.dhroid.net.NetTask;
 import com.helloarron.dhroid.net.Response;
 import com.helloarron.gzzp.R;
-import com.helloarron.gzzp.activity.main.LoginActivity;
 import com.helloarron.gzzp.activity.main.MessageActivity;
 import com.helloarron.gzzp.api.API;
 import com.helloarron.gzzp.base.GzzpBaseFagment;
@@ -87,7 +86,7 @@ public class CollectPageFragment extends GzzpBaseFagment {
         listV.setEmptyView(emptyV);
         contentListV = listV.getListView();
 
-        adapter = new NetJSONAdapter(API.collections + uid, self, R.layout.item_message_list);
+        adapter = new NetJSONAdapter(API.COLLECTIONS + uid, self, R.layout.item_message_list);
         adapter.fromWhat("result.data");
         adapter.addField("message.title", R.id.tv_message_title);
         adapter.addField(new FieldMap("message.published_at", R.id.tv_message_time) {
@@ -149,7 +148,7 @@ public class CollectPageFragment extends GzzpBaseFagment {
     private void unfavorite(String id) {
         String uid = per.getUid();
 
-        DhNet gzzpNet = new DhNet(new API().unfavorite);
+        DhNet gzzpNet = new DhNet(new API().UN_FAVORITE);
         gzzpNet.addParam("id", id);
         gzzpNet.doPost(new NetTask(self) {
             @Override

@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.helloarron.dhroid.ioc.IocContainer;
 import com.helloarron.dhroid.net.DhNet;
@@ -25,9 +24,7 @@ import com.helloarron.gzzp.manage.WxShareManager;
 import com.helloarron.gzzp.utils.GzzpPreference;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
-import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
 import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
-import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
@@ -151,7 +148,7 @@ public class MessageActivity extends GzzpBaseActivity {
      * @param id
      */
     private void getData(final String id) {
-        DhNet gzzpNet = new DhNet(new API().message + id);
+        DhNet gzzpNet = new DhNet(new API().MESSAGE + id);
         gzzpNet.doGetInDialog(new NetTask(self) {
 
             @Override
@@ -187,7 +184,7 @@ public class MessageActivity extends GzzpBaseActivity {
             showToast(getString(R.string.need_login));
             return;
         }
-        DhNet gzzpNet = new DhNet(new API().collection);
+        DhNet gzzpNet = new DhNet(new API().COLLECTION);
         gzzpNet.addParam("uid", uid);
         gzzpNet.addParam("mid", mid);
         gzzpNet.doPost(new NetTask(self) {

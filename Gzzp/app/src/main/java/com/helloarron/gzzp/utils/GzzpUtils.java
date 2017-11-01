@@ -56,6 +56,7 @@ public class GzzpUtils {
 
     /**
      * 设置通知栏颜色
+     *
      * @param activity
      * @param colorResId
      */

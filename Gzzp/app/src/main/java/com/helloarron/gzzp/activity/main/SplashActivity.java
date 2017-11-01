@@ -1,13 +1,10 @@
 package com.helloarron.gzzp.activity.main;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
@@ -25,7 +22,6 @@ import com.helloarron.gzzp.base.Const;
 import com.helloarron.gzzp.base.GzzpBaseActivity;
 import com.helloarron.gzzp.bean.User;
 import com.helloarron.gzzp.utils.GzzpPreference;
-import com.pgyersdk.update.PgyUpdateManager;
 
 import org.json.JSONObject;
 
@@ -86,7 +82,7 @@ public class SplashActivity extends GzzpBaseActivity {
 
     // 登录
     private void login() {
-        DhNet net = new DhNet(new API().login);
+        DhNet net = new DhNet(new API().LOGIN);
         net.addParam("password", per.password);
         net.addParam("email", per.email);
 
