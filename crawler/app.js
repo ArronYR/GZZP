@@ -124,7 +124,12 @@ var fetchContent = function (message, callback) {
                     decodeEntities: false
                 });
                 $('#zoom').children('table').remove();
-                message.content = __.unescape($('#zoom').html().replace(/(^\s*)|(\s*$)/g, ""));
+                let html = $('#zoom').html();
+                if (html) {
+                    message.content = __.unescape(html.replace(/(^\s*)|(\s*$)/g, ""));
+                } else {
+                    message.content = null;
+                }
                 callback(null, message);
             }
         });
