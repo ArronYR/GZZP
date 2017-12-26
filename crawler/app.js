@@ -206,7 +206,6 @@ superagent.get(gzzpUrl)
                     published_at: moment().format('YYYY') + "-" + time
                 };
                 messages.push(msgInfo);
-                // console.log(time, pureTitle, href, fontColor);
             }
         });
         console.log(moment().format('YYYY-MM-DD HH:mm:ss') + ' [message] ', messages.length);

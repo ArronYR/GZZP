@@ -500,7 +500,7 @@
   <pre><code class="language-javascript">{
     &quot;result&quot;: {},
     &quot;code&quot;: 1001,
-    &quot;message&quot;: &quot;成功获取诗信息&quot;
+    &quot;message&quot;: &quot;成功获取信息&quot;
 }</code></pre>
 
   <h2 id="toc_4">接口列表</h2>
